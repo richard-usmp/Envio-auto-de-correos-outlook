@@ -23,6 +23,8 @@ def send_email(email_emisor, email_receptor, asunto, dic=None):
     mail = add_body(html, mail, dic)
     
     #mail = add_files(mail, dic=dic)
+    
+    #mail.Send()
     mail.Save()
     print("Correo enviado")
 
@@ -87,14 +89,14 @@ def add_body(html, mail, dic=None):
     mail.HTMLBody = html
     return mail
 
-# def add_files(mail,dic=None,file_name=None,path_dir=None):
-#     p = f'Archivos' if path_dir is None else path_dir
-#     lst_files = listdir(p)
+def add_files(mail,dic=None,file_name=None,path_dir=None):
+    p = f'Archivos' if path_dir is None else path_dir
+    lst_files = listdir(p)
 
-#     for f in lst_files:
-#         fn = str(f)
-#         r_path = path.join(f'PCorreo\Archivos', fn)
-#         a_path = path.abspath(r_path)
-#         f1_at = mail.Attachments.Add(a_path)
+    for f in lst_files:
+        fn = str(f)
+        r_path = path.join(f'PCorreo\Archivos', fn)
+        a_path = path.abspath(r_path)
+        f1_at = mail.Attachments.Add(a_path)
 
-#     return mail
+    return mail
