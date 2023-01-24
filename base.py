@@ -16,7 +16,7 @@ def send_email(email_emisor, email_receptor, asunto, dic=None):
     if porc == 0:
         mail.CC=dic['EMAIL_LIDER']
 
-    fname = 'home.html'
+    fname = 'Formatos\AvanceCursos.html'
     html_file = open(fname, 'r',encoding='utf-8')
     html = html_file.read()
 
