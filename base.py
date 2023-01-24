@@ -24,7 +24,8 @@ def send_email(email_emisor, email_receptor, asunto, dic=None):
     
     #mail = add_files(mail, dic=dic)
     
-    #mail.Send()
+    #mail.Send() 
+    
     mail.Save()
     print("Correo enviado")
 
