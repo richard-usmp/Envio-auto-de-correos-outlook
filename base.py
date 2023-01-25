@@ -12,22 +12,14 @@ def send_email(email_emisor, email_receptor, asunto, dic=None):
     mail.Subject= asunto
 
     mail.To=email_receptor
-    porc = dic['PORCENTAJE_AVANCE']
-    if porc == 0:
-        mail.CC=dic['EMAIL_LIDER']
-
-    fname = 'Formatos\AvanceCursos.html'
-    html_file = open(fname, 'r',encoding='utf-8')
-    html = html_file.read()
-
-    mail = add_body(html, mail, dic)
     
     #mail = add_files(mail, dic=dic)
     
     #mail.Send() 
     
-    mail.Save()
-    print("Correo enviado")
+    
+    return mail
+    
 
 def lastRow(ws, col=1):
     lwr_r_cell = ws.cells.last_cell

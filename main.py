@@ -29,10 +29,15 @@ def main():
     
     if en is not None:
         if en == ETipoEnvio.AvanceCurso:
-            emisor = 'ricardoleon@bcp.com.pe'
+            emisor = 'andrepisco@bcp.com.pe'
             asunto = 'Correo de prueba - Seguimiento'    
             df = pd.read_excel('formato envio correos.xlsx', sheet_name="BASE")
             df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
+            send_emails(emisor, asunto,df)
+        elif en == ETipoEnvio.InicioMedicion:
+            emisor = 'andrepisco@bcp.com.pe'
+            asunto = 'Correo de prueba - Seguimiento'    
+            df = pd.read_excel('formato envio correos.xlsx', sheet_name="BASE")
             send_emails(emisor, asunto,df)
     
 if __name__ == '__main__':
