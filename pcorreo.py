@@ -23,7 +23,6 @@ def send_emails(emisor,asunto,df):
             html_file = open(fname, 'r',encoding='utf-8')
             html = html_file.read()
             mail = add_body(html, mail, dic_kv)
-            mail.Save()
             print("Correo enviado 1")
 
         elif ETipoEnvio.InicioMedicion: 
@@ -34,7 +33,6 @@ def send_emails(emisor,asunto,df):
             html = html_file.read()
             mail = add_body(html, mail, dic_kv)
             mail.CC='andrepisco20@gmail.com'
-            mail.Save()
             print("Correo enviado 2")
 
         elif ETipoEnvio.InicioPDI:
@@ -43,15 +41,15 @@ def send_emails(emisor,asunto,df):
             html_file = open(fname,'r', encoding='utf-8')
             html = html_file.read()
             mail = add_body(html, mail, dic_kv)
-            mail.Save()
             print("Correo enviado 3")
 
-        mail.Send()
+        #mail.Send()
+        mail.Save()
 
     
-    #mail = add_files(mail, dic=dic)
+        #mail = add_files(mail, dic=dic)
     
-    #mail.Send() 
+        #mail.Send() 
         
 
         
