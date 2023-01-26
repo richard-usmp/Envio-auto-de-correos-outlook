@@ -10,7 +10,7 @@ def importCSV():
     return df.itertuples()
 
 def main():
-    x = input('''
+    x_menu = input('''
           MENÚ
           ----------------------
           1. Avance de Curso
@@ -25,25 +25,36 @@ def main():
         '2':ETipoEnvio.InicioMedicion,
         '3':ETipoEnvio.InicioPDI
     }
-    en = dic.get(x)
+    en = dic.get(x_menu)
+    input_emisor = input('''
+          Inserte su correo BCP y mantenga su aplicación de Outlook abierta:
+          ''')
+    
+    input_asunto = input('''
+          Inserte Asunto:
+          ''')
+    input_tuNombre = input('''
+          Escriba su nombre completo:
+          ''')
     
     if en is not None:
         if en == ETipoEnvio.AvanceCurso:
-            emisor = 'andrepisco@bcp.com.pe'
-            asunto = 'Correo de prueba - Seguimiento'    
-            df = pd.read_excel('formato envio correos.xlsx', sheet_name="BASE")
+            emisor = input_emisor
+            asunto = input_asunto    
+            df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
             df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
-            send_emails(emisor, asunto,df)
+            send_emails(emisor, asunto, df, en, input_tuNombre)
         elif en == ETipoEnvio.InicioMedicion:
-            emisor = 'andrepisco@bcp.com.pe'
-            asunto = 'Correo de prueba - Seguimiento'    
-            df = pd.read_excel('formato envio correos.xlsx', sheet_name="BASE")
-            send_emails(emisor, asunto,df)
+            emisor = input_emisor
+            asunto = input_asunto   
+            df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
+            df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
+            send_emails(emisor, asunto, df, en, input_tuNombre)
+        elif en == ETipoEnvio.InicioPDI:
+            emisor = input_emisor
+            asunto = input_asunto   
+            df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
+            send_emails(emisor, asunto, df, en, input_tuNombre)
     
 if __name__ == '__main__':
     main()
-    # emisor = 'ricardoleon@bcp.com.pe'
-    # asunto = 'Correo de prueba - Seguimiento'    
-    # df = pd.read_excel('formato envio correos.xlsx', sheet_name="BASE")
-    # df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
-    # send_emails(emisor, asunto,df)

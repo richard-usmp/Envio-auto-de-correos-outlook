@@ -10,14 +10,7 @@ def send_email(email_emisor, email_receptor, asunto, dic=None):
     mail=ol.CreateItem(olmailitem)
     mail.SentOnBehalfOfName = email_emisor
     mail.Subject= asunto
-
     mail.To=email_receptor
-    
-    #mail = add_files(mail, dic=dic)
-    
-    #mail.Send() 
-    
-    
     return mail
     
 
@@ -65,15 +58,24 @@ def leer_excel_simple(ruta,hoja=None,f_inicio=1, c_inicio=1,is_encuesta=False):
 
     return df
 
-def add_body(html, mail, dic=None):  
-    #lst_images = listdir('Imagenes')
-    #for i in lst_images:
-    #    fn = str(i)
-    #    r_path = path.join('Imagenes', fn)
-    #    a_path = path.abspath(r_path)
-    #    f1_at = mail.Attachments.Add(a_path)
-    #    f1_at.PropertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", fn)
-    #    html = html.replace('Imagenes/'+i,'cid:'+fn)
+def add_body(html, mail, tu_nombre, dic=None):      
+    if dic is not None:
+        for k,v in dic.items():
+            html = html.replace('$'+k,str(v))
+            
+    html = html.replace('$TU_NOMBRE', tu_nombre)
+    mail.HTMLBody = html
+    return mail
+
+def add_body_with_image(html, mail, dic=None):  
+    lst_images = listdir('Imagenes')
+    for i in lst_images:
+       fn = str(i)
+       r_path = path.join('Imagenes', fn)
+       a_path = path.abspath(r_path)
+       f1_at = mail.Attachments.Add(a_path)
+       f1_at.PropertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", fn)
+       html = html.replace('Imagenes/'+i,'cid:'+fn)
         
     if dic is not None:
         for k,v in dic.items():
