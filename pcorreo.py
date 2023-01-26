@@ -18,7 +18,8 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
             porc = dic_kv['PORCENTAJE_AVANCE']
             if porc == 0:
                 mail.CC=dic_kv['EMAIL_LIDER']
-
+            #mail.BCC = 'danieldelgadof@bcp.com.pe'
+            
             fname = 'Formatos\AvanceCursos.html'
             html_file = open(fname, 'r',encoding='utf-8')
             html = html_file.read()
@@ -42,8 +43,8 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
             mail = add_body(html, mail, input_tuNombre, dic_kv)
             print("Correo enviado 3")
 
-        #mail.Send()
-        mail.Save()
+        mail.Send()
+        #mail.Save()
 
     
         #mail = add_files(mail, dic=dic)      

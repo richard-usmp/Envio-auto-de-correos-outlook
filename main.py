@@ -36,6 +36,9 @@ def main():
     input_tuNombre = input('''
           Escriba su nombre completo:
           ''')
+    #input_tuPrimerNombre = input('''
+    #      Escriba su primer nombre:
+    #      ''')
     
     if en is not None:
         if en == ETipoEnvio.AvanceCurso:
@@ -49,6 +52,7 @@ def main():
             asunto = input_asunto   
             df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
             df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
+            #df['PRIMER NOMBRE'] = [input_tuPrimerNombre]
             send_emails(emisor, asunto, df, en, input_tuNombre)
         elif en == ETipoEnvio.InicioPDI:
             emisor = input_emisor
