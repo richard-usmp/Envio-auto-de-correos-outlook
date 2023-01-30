@@ -13,7 +13,7 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
 
         mail = send_email(emisor, receptor, asunto,dic_kv)
 
-        if en == ETipoEnvio.AvanceCurso:
+        if en == ETipoEnvio.AvanceCurso_0_porc_CC_lider:
 
             porc = dic_kv['PORCENTAJE_AVANCE']
             if porc == 0:
@@ -26,9 +26,11 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
             mail = add_body(html, mail, input_tuNombre, dic_kv)
             print("Correo enviado 1")
 
-        elif en == ETipoEnvio.InicioMedicion: 
+        elif en == ETipoEnvio.InicioMedicion_0_porc_CC_lider: 
             
-            #mail.CC=dic_kv['EMAIL_LIDER']
+            porc = dic_kv['PORCENTAJE_AVANCE']
+            if porc == 0:
+                mail.CC=dic_kv['EMAIL_LIDER']
             fname = 'formatos\InicioMedicion.html'
             html_file = open(fname,'r', encoding='utf-8')
             html = html_file.read()
@@ -37,14 +39,33 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
 
         elif en == ETipoEnvio.InicioPDI:
             
+            #mail.CC=dic_kv['EMAIL_LIDER']
             fname = 'Formatos\InicioPDI.html'
             html_file = open(fname,'r', encoding='utf-8')
             html = html_file.read()
             mail = add_body(html, mail, input_tuNombre, dic_kv)
             print("Correo enviado 3")
+            
+        elif en == ETipoEnvio.AvanceCurso_CC_lider:
+            
+            mail.CC=dic_kv['EMAIL_LIDER']
+            fname = 'Formatos\AvanceCursos.html'
+            html_file = open(fname,'r', encoding='utf-8')
+            html = html_file.read()
+            mail = add_body(html, mail, input_tuNombre, dic_kv)
+            print("Correo enviado 4")
+            
+        elif en == ETipoEnvio.InicioMedicion_CC_lider:
+            
+            mail.CC=dic_kv['EMAIL_LIDER']
+            fname = 'formatos\InicioMedicion.html'
+            html_file = open(fname,'r', encoding='utf-8')
+            html = html_file.read()
+            mail = add_body(html, mail, input_tuNombre, dic_kv)
+            print("Correo enviado 5")
 
-        mail.Send()
-        #mail.Save()
+        #mail.Send()
+        mail.Save()
 
     
         #mail = add_files(mail, dic=dic)      

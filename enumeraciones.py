@@ -1,6 +1,8 @@
 from enum import Enum
 
 class ETipoEnvio(Enum):
-    AvanceCurso = 1
-    InicioMedicion = 2
+    AvanceCurso_0_porc_CC_lider = 1
+    InicioMedicion_0_porc_CC_lider = 2
     InicioPDI = 3
+    AvanceCurso_CC_lider = 4
+    InicioMedicion_CC_lider = 5    

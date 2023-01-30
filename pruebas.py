@@ -1,9 +1,2 @@
-[nombre] = input('''
-          Inserte nombre:
-          ''')
-
-apellido = input('''
-          Inserte apellido:
-          ''')
-
-print([nombre].append("apellido"))
+from win32com.client import combrowse
+combrowse.main()
