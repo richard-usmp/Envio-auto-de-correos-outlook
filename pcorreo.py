@@ -64,8 +64,8 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
             mail = add_body(html, mail, input_tuNombre, dic_kv)
             print("Correo enviado 5")
 
-        #mail.Send()
-        mail.Save()
+        mail.Send()
+        #mail.Save()
 
     
         #mail = add_files(mail, dic=dic)      
