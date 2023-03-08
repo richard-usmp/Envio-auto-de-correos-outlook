@@ -19,7 +19,9 @@ def main():
           3. Inicio de PDI
           4. Avance de Curso con Lider en copia
           5. Inicio de Medición con Lider en copia
-          6. Salir
+          6. Capability building
+          7. Refuerzo evaluación
+          8. Salir
           
           ELIJA UNA OPCIÓN: 
           ''')
@@ -28,7 +30,9 @@ def main():
         '2':ETipoEnvio.InicioMedicion_0_porc_CC_lider,
         '3':ETipoEnvio.InicioPDI,
         '4':ETipoEnvio.AvanceCurso_CC_lider,
-        '5':ETipoEnvio.InicioMedicion_CC_lider
+        '5':ETipoEnvio.InicioMedicion_CC_lider,
+        '6':ETipoEnvio.Capability_building,
+        '7':ETipoEnvio.refuerzo_evaluacion
     }
     en = dic.get(x_menu)
     input_emisor = input('''
@@ -69,6 +73,16 @@ def main():
             send_emails(emisor, asunto, df, en, input_tuNombre)
             
         elif en == ETipoEnvio.InicioMedicion_CC_lider: 
+            df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
+            df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
+            send_emails(emisor, asunto, df, en, input_tuNombre)
+
+        elif en == ETipoEnvio.Capability_building: 
+            df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
+            df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
+            send_emails(emisor, asunto, df, en, input_tuNombre)
+
+        elif en == ETipoEnvio.refuerzo_evaluacion: 
             df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
             df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
             send_emails(emisor, asunto, df, en, input_tuNombre)

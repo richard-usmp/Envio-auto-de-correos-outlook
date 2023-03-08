@@ -67,7 +67,7 @@ def add_body(html, mail, tu_nombre, dic=None):
     mail.HTMLBody = html
     return mail
 
-def add_body_with_image(html, mail, dic=None):  
+def add_body_with_image(html, mail, tu_nombre, dic=None):  
     lst_images = listdir('Imagenes')
     for i in lst_images:
        fn = str(i)
@@ -81,6 +81,7 @@ def add_body_with_image(html, mail, dic=None):
         for k,v in dic.items():
             html = html.replace('$'+k,str(v))
 
+    html = html.replace('$TU_NOMBRE', tu_nombre)
     mail.HTMLBody = html
     return mail
 
@@ -90,7 +91,7 @@ def add_files(mail,dic=None,file_name=None,path_dir=None):
 
     for f in lst_files:
         fn = str(f)
-        r_path = path.join(f'PCorreo\Archivos', fn)
+        r_path = path.join('Archivos', fn)
         a_path = path.abspath(r_path)
         f1_at = mail.Attachments.Add(a_path)
 
