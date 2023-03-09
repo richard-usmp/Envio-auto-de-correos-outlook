@@ -67,15 +67,15 @@ def add_body(html, mail, tu_nombre, dic=None):
     mail.HTMLBody = html
     return mail
 
-def add_body_with_image(html, mail, tu_nombre, dic=None):  
-    lst_images = listdir('Imagenes')
+def add_body_with_image(html, mail, tu_nombre, dir_imagen, dic=None):  
+    lst_images = listdir(dir_imagen)
     for i in lst_images:
        fn = str(i)
-       r_path = path.join('Imagenes', fn)
+       r_path = path.join(dir_imagen, fn)
        a_path = path.abspath(r_path)
        f1_at = mail.Attachments.Add(a_path)
        f1_at.PropertyAccessor.SetProperty("http://schemas.microsoft.com/mapi/proptag/0x3712001F", fn)
-       html = html.replace('Imagenes/'+i,'cid:'+fn)
+       html = html.replace(dir_imagen+'/'+i,'cid:'+fn)
         
     if dic is not None:
         for k,v in dic.items():
@@ -85,13 +85,13 @@ def add_body_with_image(html, mail, tu_nombre, dic=None):
     mail.HTMLBody = html
     return mail
 
-def add_files(mail,dic=None,file_name=None,path_dir=None):
-    p = f'Archivos' if path_dir is None else path_dir
+def add_files(mail, dir_files, dic=None,file_name=None,path_dir=None):
+    p = dir_files if path_dir is None else path_dir
     lst_files = listdir(p)
 
     for f in lst_files:
         fn = str(f)
-        r_path = path.join('Archivos', fn)
+        r_path = path.join(dir_files, fn)
         a_path = path.abspath(r_path)
         f1_at = mail.Attachments.Add(a_path)
 

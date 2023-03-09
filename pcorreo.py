@@ -70,8 +70,10 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
             fname = 'formatos\capability_building.html'
             html_file = open(fname,'r', encoding='utf-8')
             html = html_file.read()
-            mail = add_body_with_image(html, mail, input_tuNombre, dic_kv)
-            mail = add_files(mail,dic_kv)
+            dir_imagen = 'Imagenes/Capability_building'
+            mail = add_body_with_image(html, mail, input_tuNombre, dir_imagen, dic_kv)
+            dir_files = 'Archivos/Capability_building'
+            mail = add_files(mail, dir_files, dic_kv)
             print("Correo enviado 6")
 
         elif en == ETipoEnvio.refuerzo_evaluacion:
@@ -80,11 +82,12 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
             fname = 'formatos\Refuerzo_evaluacion.html'
             html_file = open(fname,'r', encoding='utf-8')
             html = html_file.read()
-            mail = add_body_with_image(html, mail, input_tuNombre, dic_kv)
+            dir_imagen = 'Imagenes/Refuerzo_evaluacion'
+            mail = add_body_with_image(html, mail, input_tuNombre, dir_imagen, dic_kv)
             print("Correo enviado 7")
 
-        mail.Send()
-        #mail.Save()
+        #mail.Send()
+        mail.Save()
 
     
         #mail = add_files(mail, dic=dic)      
