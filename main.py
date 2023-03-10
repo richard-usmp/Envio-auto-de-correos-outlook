@@ -21,8 +21,9 @@ def main():
           5. Inicio de Medición con Lider en copia
           6. Capability building
           7. Refuerzo evaluación
-          8. Finaliza tu autoevaluacion
-          9. Salir
+          8. Finaliza tu autoevaluación con copia
+          9. Autoevaluación finalizada
+          10. Salir
           
           ELIJA UNA OPCIÓN: 
           ''')
@@ -34,7 +35,8 @@ def main():
         '5':ETipoEnvio.InicioMedicion_CC_lider,
         '6':ETipoEnvio.Capability_building,
         '7':ETipoEnvio.refuerzo_evaluacion,
-        '8':ETipoEnvio.finaliza_autoevaluacion
+        '8':ETipoEnvio.finaliza_autoevaluacion,
+        '9':ETipoEnvio.autoevaluacion_finalizada
     }
     en = dic.get(x_menu)
     input_emisor = input('''
@@ -92,6 +94,11 @@ def main():
         elif en == ETipoEnvio.finaliza_autoevaluacion: 
             df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
             #df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
+            send_emails(emisor, asunto, df, en, input_tuNombre)
+
+        elif en == ETipoEnvio.autoevaluacion_finalizada: 
+            df = pd.read_excel('excel_input_datos_formato\Formato envio correos.xlsx', sheet_name="BASE")
+            df['S_PORCENTAJE_AVANCE'] = ['{:.0%}'.format(x) for x in df['PORCENTAJE_AVANCE'].values]
             send_emails(emisor, asunto, df, en, input_tuNombre)
             
     

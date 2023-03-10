@@ -9,3 +9,4 @@ class ETipoEnvio(Enum):
     Capability_building = 6 
     refuerzo_evaluacion = 7
     finaliza_autoevaluacion = 8
+    autoevaluacion_finalizada = 9

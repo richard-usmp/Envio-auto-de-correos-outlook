@@ -96,6 +96,16 @@ def send_emails(emisor,asunto,df, en, input_tuNombre):
             mail = add_body_with_image(html, mail, input_tuNombre, dir_imagen, dic_kv)
             print("Correo enviado 8")
 
+        elif en == ETipoEnvio.autoevaluacion_finalizada:
+            
+            #mail.CC=dic_kv['']
+            fname = 'formatos\Autoevaluacion_finalizada.html'
+            html_file = open(fname,'r', encoding='utf-8')
+            html = html_file.read()
+            dir_imagen = 'Imagenes/Autoevaluacion_finalizada'
+            mail = add_body_with_image(html, mail, input_tuNombre, dir_imagen, dic_kv)
+            print("Correo enviado 9")
+
         #mail.Send()
         mail.Save()
 
