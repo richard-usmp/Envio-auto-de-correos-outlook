@@ -8,3 +8,4 @@ class ETipoEnvio(Enum):
     InicioMedicion_CC_lider = 5   
     Capability_building = 6 
     refuerzo_evaluacion = 7
+    finaliza_autoevaluacion = 8
